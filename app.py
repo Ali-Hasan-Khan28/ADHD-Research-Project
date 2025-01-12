@@ -1,8 +1,8 @@
 import streamlit as st
 import time
 from datetime import datetime, timedelta
-from task_evaluator import estimate_task_completion_time  # Import the new function
-
+# from task_evaluator import estimate_task_completion_time  # Import the new function
+from gemini import estimate_task_completion_time
 # Function to play buzzer sound 5 times consecutively using HTML5 audio tag
 def play_buzzer_5_times():
     buzzer_html = """
@@ -42,6 +42,7 @@ if add_task_button:
 
         # Estimate task completion time using OpenAI
         estimated_seconds = estimate_task_completion_time(new_task)
+        print(estimated_seconds)
 
         st.session_state.task_timers[task_id] = {
             'timer_start': None,
